@@ -35,31 +35,39 @@
 
 
 // normal 
-function stingArray(length:number,value:string):string [] {
- let result:string[];
-result=Array(length).fill(value)
- return result
+// function stingArray(length:number,value:string):string [] {
+//  let result:string[];
+// result=Array(length).fill(value)
+//  return result
+// }
+// console.log( stingArray(6,'hello'));
+
+// // generics
+
+// function StingArray<T>(length:number,value:T):Array<T>{
+//  let result:T[]=[];
+//   result=Array(length).fill(value)
+//  return result
+// }
+// let arraySting1=StingArray<string>(10,'hello');
+// let arraySting2=StingArray<string>(5,'hello world')
+// console.log(arraySting2,arraySting1);
+
+// console.log( StingArray (6,'hello'));
+
+interface StoreData<T=any>{
+ data:T[];
 }
-console.log( stingArray(6,'hello'));
 
-// generics
+const storeNum:StoreData<number>={
+ data:[1,2,3,4],
+};
+console.log(storeNum);
 
-function StingArray<T>(length:number,value:T):Array<T>{
- let result:T[]=[];
-  result=Array(length).fill(value)
- return result
+const randomStuff:StoreData<any>={
+ data:['random',1],
 }
-let arraySting1=StingArray<string>(10,'hello');
-let arraySting2=StingArray<string>(5,'hello world')
-console.log(arraySting2,arraySting1);
-
-console.log( StingArray (6,'hello'));
-
-
-
-
-
-
+console.log(randomStuff);
 
 
 
