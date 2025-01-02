@@ -51,7 +51,9 @@ function StingArray<T>(length:number,value:T):Array<T>{
 }
 let arraySting1=StingArray<string>(10,'hello');
 let arraySting2=StingArray<string>(5,'hello world')
-console.log(arraySting2,arraySting1);
+console.log(arraySting1);
+
+console.log(arraySting2);
 
 console.log( StingArray (6,'hello'));
 
