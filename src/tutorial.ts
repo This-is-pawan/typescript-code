@@ -44,14 +44,14 @@
 
 // // generics
 
-// function StingArray<T>(length:number,value:T):Array<T>{
-//  let result:T[]=[];
-//   result=Array(length).fill(value)
-//  return result
-// }
-// let arraySting1=StingArray<string>(10,'hello');
-// let arraySting2=StingArray<string>(5,'hello world')
-// console.log(arraySting2,arraySting1);
+function StingArray<T>(length:number,value:T):Array<T>{
+ let result:T[]=[];
+  result=Array(length).fill(value)
+ return result
+}
+let arraySting1=StingArray<string>(10,'hello');
+let arraySting2=StingArray<string>(5,'hello world')
+console.log(arraySting2,arraySting1);
 
 // console.log( StingArray (6,'hello'));
 
