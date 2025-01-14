@@ -7,7 +7,7 @@ async function fetchData(url: string) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    console.log(data);
+    console.log(data.data);
   } catch (error) {
     const errorMsg = error instanceof Error ? error.message : 'There was an error ...';
     console.log(errorMsg);
