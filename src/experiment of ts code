@@ -22,12 +22,11 @@ const productInterface: ProductInterface = {
   consumor: "joit",
 };
 
-// Using a variable to store the products
-const products = {
-  saler: string,
-  consumor: string,
-};
-const products =products: {
+// Correctly defining a variable to store the product structure
+const products: {
+  saler: string;
+  consumor: string;
+} = {
   saler: "sham",
   consumor: "joit",
 };
