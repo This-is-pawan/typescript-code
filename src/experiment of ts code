@@ -1,3 +1,7 @@
+##############   THESE ARE THE THREE MEHTODS OLD AND  NEW VERSION              ###############
+
+
+
 // Using 'type' to define the structure
 type ProductType = {
   saler: string;
