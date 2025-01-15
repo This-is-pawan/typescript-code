@@ -2,25 +2,25 @@
 
 
 
-// Using 'type' to define the structure
+//### Using 'type' to define the structure
 type ProductType = {
   saler: string;
   consumor: string;
 };
 
-// Using 'interface' to define the structure
+//#### Using 'interface' to define the structure
 interface ProductInterface {
   saler: string;
   consumor: string;
 }
 
-// Initializing the object with 'type'
+//#### Initializing the object with 'type'
 const productType: ProductType = {
   saler: "sham",
   consumor: "joit",
 };
 
-// Initializing the object with 'interface'
+//### Initializing the object with 'interface'
 const productInterface: ProductInterface = {
   saler: "sham",
   consumor: "joit",
