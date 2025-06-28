@@ -107,4 +107,24 @@ export const useAppSelector:TypedUseSelectorHook<RootState>=useSelector;
 
 
 ```
+```ts
+// main.tsx
+import {store} from './store.ts'
+import {Provider} from 'react-redux'
+import {QueryClient,QueryClientProvider} from '@tanstack/react-query'
+ReactDOM.createRoot(document.getElementById('root')!).render(
+ <Provider store={store}>
+ <App/>
+ </Provider>
 
+)
+import {useAppSelectore,useAppDispatch} from '../../hooks'
+import {decrement,increment ,reset,setStatus} from './counterSlice'
+
+const Component=()=>{
+ const {count,status}=useAppSelectore((state)=>state)
+ return
+ <>
+ </>
+}
+```
