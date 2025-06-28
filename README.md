@@ -32,3 +32,25 @@ formInput?.addEventListener("submit", (event) => {
 });
 
 ```
+### tourschema use of zod libaray
+```ts
+const url='https://course-api.com/react-tours-project'
+export const tourSchema=z.object({
+ id:z.string(),
+ name:z.string(),
+ image:z.string(),
+info:z.string(),
+prince:z.string(),
+})
+export type Tour=z.infer<typeof tourSchema>;
+
+export const fetchTours=async ():Promise<Tour[]> => {
+ const response=await axios.get<Tour[]>(url);
+ const result=tourSchema.arry().safeParse(response.data);
+ if (!result.success) {
+  throw new Error("parsing failed");
+  
+ }
+ return result.data;
+}
+```
