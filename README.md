@@ -97,4 +97,14 @@ export const store=configureStore({
 })
 export type RootState=ReturnType<typeof store.getstate>;
 export type AppDispatch=typeof store.dispatch;
+
+#############
+import {useDispatch,useSelector} from 'react-redux'
+import type {TypedUseSelectorHook} from 'react-redux'
+import type {RootState} from './store'
+export const useAppDispatch:()=>AppDispatch=useDispatch;
+export const useAppSelector:TypedUseSelectorHook<RootState>=useSelector;
+
+
 ```
+
