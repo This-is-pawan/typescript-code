@@ -55,6 +55,15 @@ export const fetchTours=async ():Promise<Tour[]> => {
 }
 ```
 ```ts
+import {createSlice} from '@reduxjs/toolkit'
+import type {PayloadAction} from '@reduxjs/toolkit'
+
+ type CounterState='active'|'inactive'|'pending..'
+ 
+const initalState:CounterState={
+ count:0,
+ status:'pending....'
+}
 export const counterSlice=createSlice({
  name:'counter',
  initialState,
@@ -79,13 +88,5 @@ export default  counterSlice.reducer;
 
 ```
 ```ts
-import {createSlice} from '@reduxjs/toolkit'
-import type {PayloadAction} from '@reduxjs/toolkit'
 
- type CounterState='active'|'inactive'|'pending..'
- 
-const initalState:CounterState={
- count:0,
- status:'pending....'
-}
 ```
