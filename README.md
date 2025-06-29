@@ -135,7 +135,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const localImg = "/images/pexels-map.jpg";
-const Img = "https://images.pexels.com/photos/2859369/pexels-photo-2859369.jpeg";
+const Img = "https://images.pexels.com/photos/2859369/pexels-photo-2859369.jpeg";// if you change the value than chnage the img
 const Page = ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = use(params);
 
