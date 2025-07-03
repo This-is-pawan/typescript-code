@@ -23,4 +23,19 @@ export const POST = async (req: Request) => {
   }
 };
 ```
+### mysql cmds
+```ts
+CREATE database school_db; //create data
+DROP DATABASE test_db; // delete data
+
+USE school_db ; //only this db use
+CREATE TABLE student (
+id INT PRIMARY KEY,
+name VARCHAR(50),
+age INT NOT NULL
+);
+INSERT INTO student VALUES(1,'AMAN',26);
+INSERT INTO student VALUES(2,'PREET',27);
+select * from student; // show the student table 
  
+```
