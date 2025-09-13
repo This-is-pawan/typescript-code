@@ -38,3 +38,28 @@ function your({ name, age }: { name: string; age: number }) {
 your({ name: "sham", age: 24 });
 // ##########
 // type alias
+type Person = {
+  name: string;
+  age: number;
+};
+
+function your(): Person {
+  return { name: "sham", age: 24 };
+}
+
+const data = your();
+console.log(data); // { name: "sham", age: 24 }
+//and 
+type Person = {
+  name: string;
+  age: number;
+};
+
+function your(person: Person): Person {
+  return person;
+}
+
+const data = your({ name: "sham", age: 24 });
+console.log(data); // { name: "sham", age: 24 }
+
+// #######################
