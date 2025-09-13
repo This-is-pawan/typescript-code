@@ -63,3 +63,19 @@ const data = your({ name: "sham", age: 24 });
 console.log(data); // { name: "sham", age: 24 }
 
 // #######################
+type Practice={
+  _id:number,
+  name:string,
+  work:string,
+  age:number,
+  male:boolean,
+}
+let User:Practice={_id:80294723,name:'peter',work:'app developer',age:23,male:true}
+let manger=(data:Practice)=>{
+console.log(data);
+console.log(data._id);
+
+}
+
+manger(User) 
+// #####################
