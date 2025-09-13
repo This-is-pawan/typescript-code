@@ -117,4 +117,9 @@ if (User.card !== undefined) {
 }
 
 manger(User) 
-// 
+// ########### Array syntax  ###############
+//1) number[] → shorthand
+//2) Array<number> → generic form
+//3) readonly number[] → can’t modify
+//4) [string, number] → tuple
+//5) (string|number)[] → mixed type array
