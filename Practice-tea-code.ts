@@ -123,3 +123,21 @@ manger(User)
 //3) readonly number[] → can’t modify
 //4) [string, number] → tuple
 //5) (string|number)[] → mixed type array
+// ################################################
+// const user: (number | string)[] = [];
+
+// user.push(39, 29, 58);
+// user.push("peter", "sham");
+
+// console.log(user);
+// type T = [name: string,age:number,logout:boolean];
+
+// const User: Array<T> = [];
+
+// User.push(["sham",43,true]);
+// User.push(["peter",73,true]);
+
+// console.log(User);
+
+// Output: [ [ 'sham' ], [ 'peter' ] ]
+// ##########################################################
