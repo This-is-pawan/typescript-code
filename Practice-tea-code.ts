@@ -140,4 +140,18 @@ manger(User)
 // console.log(User);
 
 // Output: [ [ 'sham' ], [ 'peter' ] ]
-// ##########################################################
+// ############################  union type ##############################
+function getID(id:number|string){
+if (typeof id==="string") {
+ let a= id.toUpperCase()
+ console.log(a);
+ 
+}
+else{
+ let a= id.valueOf()
+ console.log(a);
+ 
+}
+}
+getID('dh')
+getID(2)
