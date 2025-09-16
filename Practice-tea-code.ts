@@ -155,3 +155,20 @@ else{
 }
 getID('dh')
 getID(2)
+// #####################################################################################
+// Interface extension
+interface Person {
+  name: string;
+}
+interface Employee extends Person {
+  salary: number;
+}
+
+// Type intersection
+type Person = {
+  name: string;
+};
+type Employee = Person & {
+  salary: number;
+};
+
