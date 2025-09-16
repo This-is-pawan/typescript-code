@@ -156,6 +156,22 @@ else{
 getID('dh')
 getID(2)
 // #####################################################################################
+// Use interface when:
+
+// You are defining objects, classes, API shapes.
+
+// You need declaration merging.
+
+// You expect other developers to extend your structure.
+
+// ✅ Use type when:
+
+// You need union types, tuples, or primitives.
+
+// You want to create complex transformations (mapped types, utility types).
+
+// You don’t need merging.
+// #####################################################################################
 // Interface extension
 interface Person {
   name: string;
