@@ -187,4 +187,31 @@ type Person = {
 type Employee = Person & {
   salary: number;
 };
+// ######################
+interface Go {
+  camerMode: string;
+  filter: string;
+  burst: number;
+}
+
+interface StoryFeature {
+  createStory(): void;
+}
+
+class Story implements Go, StoryFeature {
+  constructor(
+    public camerMode: string,
+    public filter: string,
+    public burst: number
+  ) {}
+
+  createStory(): void {
+    console.log("Story created with:", this.camerMode, this.filter, this.burst);
+  }
+}
+
+// ✅ Correct usage:
+const myStory = new Story("Portrait", "Black & White", 10);
+myStory.createStory();
+
 
