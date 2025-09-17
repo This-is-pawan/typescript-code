@@ -1,3 +1,4 @@
+// create-vite typescript --template vanilla-ts   create the typescript app using vite typescript app
 console.log("hary");
 let gretting:string='hello'
 console.log(gretting);
