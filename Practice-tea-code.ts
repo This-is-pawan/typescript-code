@@ -1,4 +1,5 @@
-// create-vite typescript --template vanilla-ts   create the typescript app using vite typescript app
+//  npm create vite@latest typescript -- --template va
+// nilla-ts  create the typescript app using vite typescript app
 console.log("hary");
 let gretting:string='hello'
 console.log(gretting);
