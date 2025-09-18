@@ -52,3 +52,20 @@ const newStudent={
 }
 createStudent(newStudent)// it is not complain
 createStudent({id:1,name:'peter',email:'@gamilcom'})// it is complain
+// ########################################################################
+function processData(
+  input: string | number,
+  config: { reverse: Boolean } = { reverse: false }
+): string | number {
+  if (typeof input === "number") {
+    return input * input;
+  } else {
+    return config.reverse
+      ? input.toUpperCase().split("").reverse().join("")
+      : input.toUpperCase();
+  }
+}
+console.log(processData(10));
+console.log(processData("hello"));
+console.log(processData("hello", { reverse: true }));
+// ###########################################################################
