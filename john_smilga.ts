@@ -41,3 +41,14 @@ let result=sum('the total is :',1,2,3,4,)
 console.log(result);
 // #####################
 
+function createStudent(student:{id:number;name:string}):void{
+ console.log(`welcome to the course ${student.name.toUpperCase()}`);
+ 
+}
+const newStudent={
+ id:2,
+ name:'anna',
+ email:'anna@gmail.com'
+}
+createStudent(newStudent)// it is not complain
+createStudent({id:1,name:'peter',email:'@gamilcom'})// it is complain
