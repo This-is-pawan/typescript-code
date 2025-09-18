@@ -76,5 +76,18 @@ type Animal={
 let tiger:Animal={[propName]:5};
 console.log(tiger);
 // #########################################################
+const sorting: number[] = [23, 4, 65, 34, 6, 45, 3];
 
+for (let i: number = 0; i < sorting.length; i++) {
+  for (let j: number = 0; j < sorting.length - 1; j++) {
+    if (sorting[j] > sorting[j + 1]) {
+      let sort: number = sorting[j];
+      sorting[j] = sorting[j + 1];
+      sorting[j + 1] = sort;
+    }
+  }
+}
+
+console.log(sorting);
+// ##########################################################
 
