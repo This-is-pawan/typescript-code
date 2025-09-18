@@ -69,3 +69,12 @@ console.log(processData(10));
 console.log(processData("hello"));
 console.log(processData("hello", { reverse: true }));
 // ###########################################################################
+const propName='age'
+type Animal={
+ [propName]:number;
+}
+let tiger:Animal={[propName]:5};
+console.log(tiger);
+// #########################################################
+
+
