@@ -26,3 +26,18 @@ console.log(Numbers);
 let Both:(number|string)[]=[23,'the',43]
 console.log(Both);
 // ####
+function sum(messaeg:string,...numbers:number[]):string{
+ const doubled=numbers.map((num)=>num*2)
+ console.log(doubled);
+ let total=numbers.reduce((pre,curr)=>{
+  return pre+curr;
+ },0)
+ return `${messaeg}${total} `
+ 
+}
+
+
+let result=sum('the total is :',1,2,3,4,)
+console.log(result);
+// #####################
+
