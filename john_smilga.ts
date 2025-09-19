@@ -90,4 +90,74 @@ for (let i: number = 0; i < sorting.length; i++) {
 
 console.log(sorting);
 // ##########################################################
+function getEmployee():Person|DogOwner|Manager {
+  const random = Math.random();
+
+  if (random < 0.33) {
+    return {
+      name: 'hope'
+    };
+  } else if (random < 0.66) {
+    return {
+      name: 'sarah',
+      dogName: 'rex'
+    };
+  } else {
+    return {
+      name: 'bob',
+      managePeople() {
+        console.log('managing people...');
+      },
+      delegateTasks() {
+        console.log('delegating...');
+      }
+    };
+  }
+}
+
+interface Person {
+  name: string;
+}
+
+interface DogOwner extends Person {
+  dogName: string;
+}
+
+interface Manager extends Person {
+  managePeople(): void;
+  delegateTasks(): void;
+}
+
+const employee: Person | DogOwner | Manager = getEmployee();
+console.log(employee);
+ // ##################### enum ###################################################
+enum ServerResponseStatus {
+  Success,
+  Error, 
+}
+console.log(ServerResponseStatus);
+
+Object.values(ServerResponseStatus).forEach((value)=>{
+  if (typeof value==='number') {
+    console.log(value);
+  }
+
+});
+
+
+interface ServerResponse {
+  result: ServerResponseStatus;
+  data: string[];
+}
+
+function getServerResponse(): ServerResponse {
+  return {
+    result: ServerResponseStatus.Success,
+    data: ['first item', 'second item'],
+  };
+}
+
+const response: ServerResponse = getServerResponse();
+console.log(response);
+// ###########################
 
