@@ -156,8 +156,37 @@ function getServerResponse(): ServerResponse {
     data: ['first item', 'second item'],
   };
 }
-
 const response: ServerResponse = getServerResponse();
 console.log(response);
-// ###########################
+// ######################################################################
+
+enum UserRole {
+  Admin=9,
+  Manager,
+  Employee,
+}
+
+type User = {
+  id: number;
+  name: string;
+  role: UserRole;
+  contact: [string, string]; // [email, phone]
+};
+
+function createUser(user: User): User {
+  return user;
+}
+
+const user: User = createUser({
+  id: 1,
+  name: 'John Doe',
+  role: UserRole.Admin,
+  contact: ['john@gmail.com', '12345945'],
+});
+
+console.log(user.role);
+
+
+
+// ###########################################################################
 
