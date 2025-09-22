@@ -208,6 +208,27 @@ console.log(bird.name);
 console.log(dog.name);
 
 // #######################################################
+enum Status{
+  Pending='pending',
+  Declined='declined'
+}
+
+type User={
+  name:string,
+  status:Status,
+}
+
+const statusValue='pending'
+const user:User={name:'john',status:statusValue as Status}
+console.log(user);
+
+// ######################################################################
+
+
+
+
+
+
 
 
 
