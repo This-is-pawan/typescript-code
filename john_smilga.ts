@@ -189,4 +189,25 @@ console.log(user.role);
 
 
 // ###########################################################################
+let someValue:any='this is a string'
+
+let strLength:number=(someValue as string).length;
+
+console.log(strLength);
+
+type Bird={
+  name:string;
+}
+let birdString='{"name":"Eagle"}'
+let dogString='{"breed":"Poodle"}'
+let birdObject=JSON.parse(birdString)
+let dogObject=JSON.parse(dogString)
+let bird=birdObject as Bird
+let dog=dogObject as Bird
+console.log(bird.name);
+console.log(dog.name);
+
+// #######################################################
+
+
 
