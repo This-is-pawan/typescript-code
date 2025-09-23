@@ -309,6 +309,24 @@ console.log(someStringValue2);
 // ###########################################################################
 
 
+function genrateStringArray(length:number,value:string):string[]{
+  let result:string[]=[]
+ result=Array(length).fill(value)
+return result;
+}
+
+// console.log(genrateStringArray(6,'typescript'));
+
+function StringArray<T>(length: number, value: T): T[] {
+  return Array(length).fill(value);
+}
+
+let arr = StringArray<string>(10, 'typescript');
+let num = StringArray<number>(6, 100);
+
+console.log(arr);
+console.log(num);
+// #####################################
 
 
 
