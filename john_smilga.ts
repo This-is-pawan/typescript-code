@@ -363,6 +363,17 @@ console.log(first.name);
 }
 print(student)
 #####################################################################
+interface StoreData<T=any>{
+  // if not use below line  StoreData<any> above function bydefault select type any<T=any>
+  data:T[];
+}
+const storeNumbers:StoreData<number>={
+  data:[12,49,4,54]
+}
+const randomStuff:StoreData={
+  data:['random',234];
+}
+
 
 
 
