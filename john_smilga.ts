@@ -246,7 +246,38 @@ console.log(user);
 
 // ##############################################################################
 
+type IncreamentAction={
+  amount:number,
+    type:'increment';
+  timestamp:number,
+  user:string,
+};
+type DecrementAction={
+  type:'decrement';
+  amount:number,
+  timestamp:number,
+  user:string,
+}
+type Action=IncreamentAction|DecrementAction;
+function reducer (state:number,action:Action){
+switch(action.type){
+case'increment':
+return state+action.amount
+case'decrement':
+return state+action.amount
+default:
+  const unexpectedAction:never=action
+  throw new Error(`unexpected action:${nexpectedAction}`);
+  
+}
 
+}
+const newState=reducer(15,{user:'hop',amount:5,
+  timestamp:12345,
+  type:'increment'
+})
+console.log(newState);
+// #################################################################################
 
 
 
