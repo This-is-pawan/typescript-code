@@ -391,6 +391,51 @@ export interface AxiosResponse<T=any,D=any>{
   request?:any;
 }
 // ###########################################################################
+import {z} from 'zod'
+
+const url = 'https://www.course-api.com/react-tours-project';
+
+
+const tourSchema=z.object({
+  id:z.string(),
+  name:z.string(),
+  infor:z.string(),
+  image:z.string(),
+  price:z.string(),
+})
+// Or
+
+type Tour={
+  id:string,
+  name:string,
+  infor:string,
+  image:string,
+  price:string,
+}
+async function fetchData(url: string):Promise<Tour[]> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status:${response.status}`);
+    }
+    const data:Tour[] = await response.json();
+    return data;
+  } catch (error) {
+    const erormsg = error instanceof Error ? error.message : 'there was an error...';
+    console.log(erormsg);
+    return [];
+  }
+}
+
+
+  let tours = await fetchData(url);
+  tours.map((tour: any) => {
+    console.log(tour.name);
+  });
+// #############################################################
+
+
+
 
 
 
