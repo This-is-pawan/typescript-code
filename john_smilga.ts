@@ -444,6 +444,9 @@ const tourSchema = z.object({
   info: z.string(),   // it was 'infor', API uses 'info'
   image: z.string(),
   price: z.string(),
+  // if any key is not present in the object it get any error of error zodError like
+  received_money:z.string()
+                    
 });
 
 type Tour = z.infer<typeof tourSchema>;
@@ -480,6 +483,7 @@ async function fetchData(url: string): Promise<Tour[]> {
     console.log(tour.name);
   });
 })();
+
 // #####################################################
 
 
