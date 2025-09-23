@@ -341,6 +341,28 @@ function process<T extends string | number>(value:T):T {
 process('hello')
 process(12)
 process(true)
+##############################################
+interface Car{
+name:string,
+price:number,
+}
+let car:Car={
+name:'toyota',
+price:40000,
+}
+interface Student{
+name:string,
+age:number,
+}
+let student:Student={
+name:'toni',
+age:15,
+}
+function print<T  extends Student | Car>(first:T):void{
+console.log(first.name);
+}
+print(student)
+#####################################################################
 
 
 
