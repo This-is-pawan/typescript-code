@@ -433,7 +433,54 @@ async function fetchData(url: string):Promise<Tour[]> {
     console.log(tour.name);
   });
 // #############################################################
+import { z } from 'zod';
 
+const url = 'https://www.course-api.com/react-tours-project';
+
+// Corrected schema
+const tourSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  info: z.string(),   // it was 'infor', API uses 'info'
+  image: z.string(),
+  price: z.string(),
+});
+
+type Tour = z.infer<typeof tourSchema>;
+
+async function fetchData(url: string): Promise<Tour[]> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // Don't type JSON yet, let Zod validate it
+    const rawData = await response.json();
+
+    // Validate using Zod
+    const result = tourSchema.array().safeParse(rawData);
+    console.log(result);
+
+    if (!result.success) {
+      throw new Error(`Invalid data: ${result.error}`);
+    }
+
+    return result.data;
+  } catch (error) {
+    const errorMsg = error instanceof Error ? error.message : 'There was an error...';
+    console.log(errorMsg);
+    return [];
+  }
+}
+
+(async () => {
+  const tours = await fetchData(url);
+  tours.map((tour) => {
+    console.log(tour.name);
+  });
+})();
+// #####################################################
 
 
 
