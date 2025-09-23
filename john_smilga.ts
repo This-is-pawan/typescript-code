@@ -280,6 +280,34 @@ console.log(newState);
 // #################################################################################
 
 
+function increment(name: string) {
+  console.log(name);
+}
+increment('happy');
+
+function decrement(age: number) {
+  console.log(age);
+}
+decrement(89);
+
+function logValue(value: string | number | boolean) {
+  // TypeScript thinks value could be string | number | boolean
+  // So this will give an error:
+  // value.toFixed(2); // ❌ Error: could be string or boolean
+}
+
+
+
+// OR
+function genericIncrement<T>(arg:T):T{
+  return arg;
+}
+const someStringValue1=genericIncrement<string>('hello')
+const someStringValue2=genericIncrement<number>(543)
+console.log(someStringValue1);
+console.log(someStringValue2);
+// ###########################################################################
+
 
 
 
