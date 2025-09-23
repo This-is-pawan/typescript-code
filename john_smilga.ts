@@ -328,7 +328,19 @@ console.log(arr);
 console.log(num);
 // #####################################
 
-
+function pair<T,U> (par1:T,par2:U):[T,U]{
+return [par1,par2];
+}
+let result=pair<number,string>(123,'helo')
+console.log(result);
+function process<T extends string | number>(value:T):T {
+  console.log(value);
+  
+  return value;
+}
+process('hello')
+process(12)
+process(true)
 
 
 
