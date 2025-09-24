@@ -496,6 +496,34 @@ class Book {
 }
 const deepWork=new Book('deep book','cal newpot')
 console.log(deepWork);
+##################################################################
+class Book {
+  public readonly title: string;
+  public author: string;
+  private checkedOut: boolean = false;
+
+  constructor(title: string, author: string) {
+    this.title = title;
+    this.author = author;
+  }
+
+  public checkOut() {
+    this.checkedOut = this.toggleCheckOutStatus();
+  }
+
+  public isCheckOut() {
+    return this.checkedOut;
+  }
+
+  private toggleCheckOutStatus() {
+    return !this.checkedOut;
+  }
+}
+
+const deepWork = new Book("Deep Work", "Cal Newport");
+
+deepWork.checkOut();
+console.log(deepWork.isCheckOut()); // ✅ true
 
 
 
