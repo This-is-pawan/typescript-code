@@ -524,6 +524,46 @@ const deepWork = new Book("Deep Work", "Cal Newport");
 
 deepWork.checkOut();
 console.log(deepWork.isCheckOut()); // ✅ true
+// ################
+class Book {
+  private checkedOut: boolean = false;
+
+  constructor(readonly title: string, public author: string) {}
+
+  get info() {
+    return `${this.title} by ${this.author}`;
+  }
+}
+
+const deepWork = new Book("Deep Work", "Cal Newport");
+
+console.log(deepWork.info); // ✅ "Deep Work by Cal Newport"
+// ###################
+class Book {
+  private checkedOut: boolean = false;
+
+  constructor(readonly title: string, public author: string) {}
+
+  get info() {
+    return `${this.title} by ${this.author}`;
+  }
+
+  set checkOut(checked: boolean) {
+    this.checkedOut = checked; // ✅ assign to the private field
+  }
+
+  get checkOut() {
+    return this.checkedOut; // ✅ getter for reading
+  }
+}
+
+const deepWork = new Book("Deep Work", "Cal Newport");
+
+console.log(deepWork.info); // ✅ "Deep Work by Cal Newport"
+
+deepWork.checkOut = true; // using setter
+console.log(deepWork.checkOut); // ✅ true
+
 
 
 
