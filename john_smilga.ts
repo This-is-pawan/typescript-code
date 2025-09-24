@@ -484,7 +484,18 @@ async function fetchData(url: string): Promise<Tour[]> {
   });
 })();
 
-// #####################################################
+// ############################# class ########################
+class Book {
+  title:string;
+  author:string;
+  checkedOut:boolean=false;
+  constructor(title:string,author:string) {
+    this.title=title;
+    this.author=author;
+  }
+}
+const deepWork=new Book('deep book','cal newpot')
+console.log(deepWork);
 
 
 
