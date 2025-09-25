@@ -564,7 +564,98 @@ console.log(deepWork.info); // ✅ "Deep Work by Cal Newport"
 deepWork.checkOut = true; // using setter
 console.log(deepWork.checkOut); // ✅ true
 
+// ####################################################################
+const taskForm = document.querySelector<HTMLFormElement>(".form");
+const formInput = document.querySelector<HTMLInputElement>(".form-input");
+const taskListElement = document.querySelector<HTMLUListElement>(".list");
 
+type Task = {
+  description: string;
+  isCompleted: boolean;
+};
+
+const tasks: Task[] = loadTasks();
+tasks.forEach(renderTask);
+
+// Load tasks from localStorage
+function loadTasks(): Task[] {
+  const storedTasks = localStorage.getItem("tasks");
+  return storedTasks ? JSON.parse(storedTasks) : [];
+}
+
+// Save tasks to localStorage
+function updateStorage(): void {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+// Add new task
+function createTask(event: SubmitEvent): void {
+  event.preventDefault();
+  if (!formInput) return;
+
+  const taskDescription = formInput.value.trim();
+  if (!taskDescription) {
+    alert("Please enter a task description");
+    return;
+  }
+
+  const task: Task = {
+    description: taskDescription,
+    isCompleted: false,
+  };
+
+  addTask(task);
+  updateStorage();
+  renderTask(task);
+
+  console.log("Task added:", taskDescription);
+  formInput.value = "";
+}
+
+// Add task to array
+function addTask(task: Task): void {
+  tasks.push(task);
+}
+
+// Render a single task
+function renderTask(task: Task): void {
+  if (!taskListElement) return;
+
+  const li = document.createElement("li");
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = task.isCompleted;
+  checkbox.addEventListener("change", () => {
+    task.isCompleted = checkbox.checked;
+    updateStorage();
+  });
+
+  const span = document.createElement("span");
+  span.textContent = task.description;
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "Delete";
+  deleteBtn.addEventListener("click", () => {
+    li.remove();
+    const index = tasks.indexOf(task);
+    if (index > -1) {
+      tasks.splice(index, 1);
+      updateStorage();
+    }
+  });
+
+  li.appendChild(checkbox);
+  li.appendChild(span);
+  li.appendChild(deleteBtn);
+  taskListElement.appendChild(li);
+}
+
+// Attach form event
+if (taskForm) {
+  taskForm.addEventListener("submit", createTask);
+}
+// ################################################################
 
 
 
