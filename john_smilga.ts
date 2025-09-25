@@ -656,7 +656,41 @@ if (taskForm) {
   taskForm.addEventListener("submit", createTask);
 }
 // ################################################################
+export type CounterState={
+  count:number;
+  status:string;
+}
+export const initialState:CounterState={
+count:0,
+status:'pending'
+}
+type UpdateCountAction={
+  type:'increment'|'decrement'|'reset'
+}
+type SetStatusAction={
+  type:'setStatus';
+  payload:'active'|'inactive'
+}
+type CounterAction=UpdateCountAction;
 
+export const counterReducer=(
+  state:CounterState,
+  action:CounterAction,
+):CounterAction=>{
+  switch (action.type) {
+    case 'increment':
+      return{...state,count:state.count+1}
+      case 'decrement':
+      return{...state,count:state.count-1}
+      case 'reset':
+      return{...state,count:0}
+    
+  
+    default:
+     return state;
+  }
+}
+// ###############################
 
 
 
