@@ -39,3 +39,5 @@ INSERT INTO student VALUES(2,'PREET',27);
 select * from student; // show the student table 
  
 ```
+################################# 
+npm create vite@lastest  
