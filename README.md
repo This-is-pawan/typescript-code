@@ -24,7 +24,7 @@ export const POST = async (req: Request) => {
 };
 ```
 ### mysql cmds
-```ts
+```ts 
 CREATE database school_db; //create data
 DROP DATABASE test_db; // delete data
 
@@ -37,7 +37,7 @@ age INT NOT NULL
 INSERT INTO student VALUES(1,'AMAN',26);
 INSERT INTO student VALUES(2,'PREET',27);
 select * from student; // show the student table 
- 
+
 ```
 ################################# 
 npm create vite@lastest  
