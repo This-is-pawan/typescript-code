@@ -97,3 +97,84 @@ app.listen(3000, () => {
 
 export default app;
 // #################### second way is
+import express, { Application, Request, Response } from "express";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import User from "./model/model";
+import connectDb from "./db/mongDB";
+import cookieParser from "cookie-parser";
+
+const app: Application = express();
+const PORT = 3000;
+const JWT_SECRET = "secret_jwt_dev";
+
+connectDb();
+app.use(express.json());
+app.use(cookieParser());
+
+// ================== REGISTER ==================
+app.post("/register", async (req: Request, res: Response) => {
+  try {
+    const { name, email, mobile, country } = req.body;
+    if (!name || !email || !mobile || !country) {
+      return res.status(400).json({ success: false, message: "All fields are required" });
+    }
+
+    const exist = await User.findOne({ email });
+    if (exist) {
+      return res.status(400).json({ success: false, message: `User email already exists: ${email}` });
+    }
+
+    const hash = await bcrypt.hash(mobile, 10);
+    const user = await User.create({ name, email, mobile: hash, country });
+
+    return res.status(201).json({ success: true, message: "Register successful", user });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Server error", error });
+  }
+});
+
+// ================== LOGIN ==================
+app.post("/login", async (req: Request, res: Response) => {
+  try {
+    const { name, email, mobile } = req.body;
+    if (!name || !email || !mobile) {
+      return res.status(400).json({ success: false, message: "All fields are required" });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    const isMatch = await bcrypt.compare(mobile, user.mobile);
+    if (!isMatch) {
+      return res.status(401).json({ success: false, message: "Invalid mobile number" });
+    }
+
+    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: "1d" });
+
+    // send token in cookie
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: false, // in production → true with HTTPS
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+    });
+
+    return res.status(200).json({ success: true, message: "Login successful" });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Server error", error });
+  }
+});
+
+// ================== LOGOUT ==================
+app.post("/logout", (req: Request, res: Response) => {
+  res.clearCookie("token"); // remove token from cookies
+  return res.status(200).json({ success: true, message: "Logout successful" });
+});
+
+// ================== SERVER ==================
+app.listen(PORT, () => {
+  console.log(`Server is listening on port: ${PORT}`);
+});
+// /#############
