@@ -178,3 +178,94 @@ app.listen(PORT, () => {
   console.log(`Server is listening on port: ${PORT}`);
 });
 // /#############
+import * as bcrypt  from 'bcryptjs';
+import express, { NextFunction, Request, Response } from "express";
+import cookieParser from 'cookie-parser'
+
+import connect from "./db/mongoDb"
+import jwt from 'jsonwebtoken'
+const secrettoken='secret_jwt_token'
+connect();
+
+import UserModel from "./Auth";
+const app = express();
+const PORT = 3000;
+app.use(express.json());
+app.use(cookieParser());
+app.get("/", (req: Request, res: Response) => {
+  res.send("Home Page");
+});
+
+
+const  Auth=(req: Request, res: Response, next:NextFunction)=>{
+const  token = req.cookies.token;
+  if(!token) res.json('not authenticated')
+try {
+  const decoded=jwt.verify(token,secrettoken)
+  res.send(`hello ${JSON.stringify(decoded)}`)
+} catch (error) {
+  
+}
+}
+app.post("/register", async (req: Request, res: Response) => {
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
+    res.json("somethign is missing");
+  }
+
+  try {
+    const exist = await UserModel.findOne({ email });
+    if (exist) res.json("user is already exist");
+  const hash=await bcrypt.hash(password,10)
+
+    const user=await UserModel.create({name,email,password:hash});
+    res.json({ success: true, message: "register succesfully" ,user});
+  } catch (error) { 
+    res.json({ success: false, message: error });
+  }
+});
+app.post("/login", async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+
+  // Step 1: Validate input
+  if (!email || !password) {
+    return res.status(400).json({ success: false, message: "Something is missing" });
+  }
+
+  try {
+    // Step 2: Find user by email
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not registered" });
+    }
+
+    // Step 3: Compare password
+    
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ success: false, message: "Invalid password" });
+    }
+ const token:string=jwt.sign({id:user._id},secrettoken,{expiresIn:'1d'})
+ res.cookie('token',token,{
+  httpOnly:true,
+  secure:false,
+  maxAge:36000
+ })
+    res.json({ success: true, message: "Login successful", user: user.email,token });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Server error", error });
+  }
+});
+
+app.get('/profile',Auth,async(req: Request, res: Response)=>{
+res.json('my profile')
+
+})
+app.use((req: Request, res: Response) => {
+  res.send("page not found");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
+// #######################################################################
