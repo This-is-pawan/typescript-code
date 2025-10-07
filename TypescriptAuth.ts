@@ -6,7 +6,6 @@ import User from "./model/model";
 
 const JWT_SECRET = "your_jwt_secret_key";  
 const app: Application = express();
-
 connectDb();
 app.use(express.json());
 
